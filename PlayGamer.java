@@ -10,6 +10,10 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.AudioInputStream;
+import java.io.File;
 
 public class PlayGamer extends JFrame {
 
@@ -31,7 +35,24 @@ public class PlayGamer extends JFrame {
         add(gamePanel);
 
         setVisible(true);
+
+        // Iniciar música de fondo
+        reproducirMusicaFondo("C:\\Users\\wicho\\OneDrive\\Desktop\\ZombieSurvivor\\src\\main\\resources\\LavenderTown.wav");
+
         gamePanel.iniciarJuego();
+    }
+
+    // Método para reproducir música de fondo
+    private void reproducirMusicaFondo(String rutaArchivo) {
+        try {
+            AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File(rutaArchivo));
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            clip.loop(Clip.LOOP_CONTINUOUSLY); // Repite infinitamente
+            clip.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // ------------------ Clase interna GamePanel ------------------
@@ -71,7 +92,7 @@ public class PlayGamer extends JFrame {
 
             ImageIcon ii = new ImageIcon("C:\\Users\\wicho\\OneDrive\\Desktop\\ZombieSurvivor\\src\\main\\resources\\dia1.png");
             fondo = ii.getImage();
-            corazonIcon = new ImageIcon("C:\\Users\\wicho\\OneDrive\\Desktop\\corazon.gif");
+            corazonIcon = new ImageIcon("C:\\Users\\wicho\\OneDrive\\Desktop\\ZombieSurvivor\\src\\main\\resources\\corazon.gif");
 
             btnMenu = new JButton("Menu");
             btnReiniciar = new JButton("Reiniciar");
@@ -347,4 +368,3 @@ public class PlayGamer extends JFrame {
         }
     } // Fin GamePanel
 } // Fin PlayGamer
-

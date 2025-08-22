@@ -28,7 +28,7 @@ public class VidaExtra {
         x = (int)(Math.random() * 1100);
         y = (int)(Math.random() * 600);
 
-        imagen = new ImageIcon("C:\\Users\\wicho\\OneDrive\\Desktop\\vida.png").getImage();
+        imagen = new ImageIcon("C:\\Users\\wicho\\OneDrive\\Desktop\\ZombieSurvivor\\src\\main\\resources\\vida.png").getImage();
     }
 
     /**
